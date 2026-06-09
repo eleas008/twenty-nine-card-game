@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Twenty-Nine Card Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+        <div class="logo"><h1>Twenty-Nine</h1></div>
+        <div class="game-score-board">
+            <div class="score-pill">Match Score: <span id="match-score">Us 0 - 0 Them</span></div>
+            <div class="score-pill">Current Round Target: <span id="round-target">None</span></div>
+            <button id="exit-game-btn" class="exit-btn" onclick="exitCurrentGameSession()">Exit Game</button>
+        </div>
+    </header>
+
+    <div class="game-container">
+        <div class="table-area">
+            
+            <div class="mat">
+                <div id="played-0" class="played-card"></div>
+                <div id="played-1" class="played-card"></div>
+                <div id="played-2" class="played-card"></div>
+                <div id="played-3" class="played-card"></div>
+            </div>
+
+            <div id="slot-0" class="player-slot">
+                <div class="hand" id="user-hand"></div>
+                <div class="player-badge" id="badge-0">You (South)</div>
+            </div>
+
+            <div id="slot-1" class="player-slot">
+                <div class="player-badge" id="badge-1">AI-1 (East)</div>
+                <div class="hand" id="hand-1"></div>
+            </div>
+
+            <div id="slot-2" class="player-slot">
+                <div class="player-badge" id="badge-2">AI-2 (North - Partner)</div>
+                <div class="hand" id="hand-2"></div>
+            </div>
+
+            <div id="slot-3" class="player-slot">
+                <div class="player-badge" id="badge-3">AI-3 (West)</div>
+                <div class="hand" id="hand-3"></div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <div class="panel-box">
+                <h3>Trump Suit</h3>
+                <div id="trump-display" class="trump-display-box">
+                    <div class="trump-indicator hidden-trump">?</div>
+                </div>
+                <div class="center-content">
+                    <button id="ask-trump-btn" class="secondary small-btn" disabled>Ask Trump</button>
+                </div>
+            </div>
+
+            <div class="panel-box">
+                <h3>Current Round Status</h3>
+                <p class="status-text">Bid Winner: <span id="bid-winner-txt">-</span></p>
+                <p class="status-text font-bold">Points Won This Round:</p>
+                <div class="team-points-sub">
+                    Team Us (S/N): <span id="points-us">0</span> pts<br>
+                    Team Them (E/W): <span id="points-them">0</span> pts
+                </div>
+            </div>
+
+            <div class="panel-box log-panel">
+                <h3>Game Feed</h3>
+                <div id="log-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-overlay" class="overlay hidden">
+        <div id="bid-modal" class="modal hidden">
+            <h2>Place Your Bid</h2>
+            <p>Current highest bid: <span id="current-highest-bid">16</span></p>
+            <div class="btn-group" id="bid-buttons"></div>
+            <div class="btn-group">
+                <button class="secondary" onclick="submitBid('pass')">Pass</button>
+            </div>
+        </div>
+
+        <div id="trump-modal" class="modal hidden">
+            <h2>Select Trump Suit</h2>
+            <p>You won the bidding process! Set your secret trump asset suit:</p>
+            <div class="btn-group">
+                <button class="trump-select-btn color-red" onclick="setTrump('♥')">♥</button>
+                <button class="trump-select-btn color-red" onclick="setTrump('♦')">♦</button>
+                <button class="trump-select-btn color-black" onclick="setTrump('♣')">♣</button>
+                <button class="trump-select-btn color-black" onclick="setTrump('♠')">♠</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
